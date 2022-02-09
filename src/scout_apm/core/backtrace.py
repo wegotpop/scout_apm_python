@@ -21,6 +21,7 @@ def filter_frames(frames):
     """Filter the stack trace frames down to non-library code."""
     paths = sysconfig.get_paths()
     library_paths = {paths["purelib"], paths["platlib"]}
+    logger.debug("Library paths: %s", library_paths)
     for frame in frames:
         if not any(frame["file"].startswith(exclusion) for exclusion in library_paths):
             yield frame
@@ -128,7 +129,7 @@ def capture_backtrace():
     filtered_frame_list = list(itertools.islice(filtered_walker, LIMIT))
     logger.debug("Backtrace length %s", len(frame_list))
     logger.debug("Filtered backtrace length %s", len(filtered_frame_list))
-    import ipdb; ipdb.sset_trace()
+    logger.debug("frame list: %s", filtered_frame_list)
     return filtered_frame_list
 
 

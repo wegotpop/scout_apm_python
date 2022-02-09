@@ -291,4 +291,5 @@ class Span(object):
         self.tag("stop_allocations", end_allocs)
 
     def capture_backtrace(self):
+        logger.debug('Capturing backtrace for %s', self.span_id)
         self.tag("stack", backtrace.capture_backtrace())
