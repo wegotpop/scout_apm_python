@@ -128,6 +128,7 @@ def capture_backtrace():
     filtered_frame_list = list(itertools.islice(filtered_walker, LIMIT))
     logger.debug("Backtrace length %s", len(frame_list))
     logger.debug("Filtered backtrace length %s", len(filtered_frame_list))
+    import ipdb; ipdb.sset_trace()
     return filtered_frame_list
 
 
